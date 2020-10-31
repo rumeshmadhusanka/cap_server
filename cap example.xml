@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+ <identifier>todouuid</identifier>
+ <sender>170589C</sender>
+ <sent>2003-06-17T14:57:00-07:00</sent>
+ <status>System</status>
+ <msgType>Alert</msgType>
+ <scope>Private</scope>
+ <info>
+   <category>Env</category>
+   <event>WEATHER DATA</event>
+   <responseType>None</responseType>
+   <urgency>Past</urgency>
+   <severity>Minor</severity>
+   <certainty>Observed</certainty>
+<!--     Data goes here-->
+     <parameter>
+         <valueName>TEMP</valueName>
+         <value>{temp value}</value>
+     </parameter>
+     <parameter>
+         <valueName>HUMIDITY</valueName>
+         <value>{HUMIDITY value}</value>
+     </parameter>
+     <parameter>
+         <valueName>LIGHT</valueName>
+         <value>{light value}</value>
+     </parameter>
+     <parameter>
+         <valueName>TEMP</valueName>
+         <value>{temp value}</value>
+     </parameter>
+   <area>
+     <areaDesc>UNIVERSITY OF MORATUWA</areaDesc>
+   </area>
+ </info>
+</alert>
