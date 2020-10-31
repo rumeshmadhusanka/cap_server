@@ -1,17 +1,18 @@
 <html lang="en">
 <head>
     <title>Server</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
-    <script src="javascripts/main.js"></script>
 </head>
 <body>
-<h1>Weather data CAP server</h1>
+<h1>Weather data Remote Server</h1>
+<p>Upload data :https://cap-nodejs.herokuapp.com/cap as a POST request</p>
+<p>170589C</p>
+<h3>Visualization</h3>
 <br>
-<table id="data-table">
-<tr>
-    <td>cxtwvcyxw</td>
-    <td>kjfirf</td>
-</tr>
-</table>
+<br>
+<div id="curve_chart" style="width: 900px; height: 500px"></div>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase.js"></script>
+<script src="javascripts/main.js"></script>
 </body>
 </html>
