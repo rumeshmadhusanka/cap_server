@@ -26,3 +26,9 @@ table{
   stroke: #ccc;
   stroke-width: 2px;
 }
+
+.container{
+  display: flex;
+  justify-content: center;
+  width: 1800px;
+}

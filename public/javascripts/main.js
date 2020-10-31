@@ -20,15 +20,14 @@ database.ref('weather').once('value', async (snap) => {
 
     var all_data = snap.val();
 
-     function doAll(){
+    function displayAverages() {
 
-         let p = Object.keys(all_data).length
-        let chart_data = [['Time', 'Temp', 'Humidity','Light','Pressure'],];
-         let timestamps = Object.keys(all_data);
+        let p = Object.keys(all_data).length
+        let chart_data = [['Time', 'Temp', 'Humidity', 'Light', 'Pressure'],];
+        let timestamps = Object.keys(all_data);
         for (let i = 0; i < p; i++) {
             try {
                 let current_array = [];
-
 
 
                 let temp = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][0]["value"][0];
@@ -42,7 +41,7 @@ database.ref('weather').once('value', async (snap) => {
                 current_array.push(parseInt(light))
                 current_array.push(parseInt(pres))
                 chart_data.push(current_array)
-            }catch (e){
+            } catch (e) {
                 console.error(e);
             }
         }
@@ -62,22 +61,83 @@ database.ref('weather').once('value', async (snap) => {
             var data = google.visualization.arrayToDataTable(chart_data);
 
             var options = {
-                title: '',
+                title: 'Average',
                 curveType: 'function',
                 legend: {position: 'bottom'}
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            var chart = new google.visualization.LineChart(document.getElementById('averages'));
 
             chart.draw(data, options);
         }
     }
 
 
+    function displayStd() {
+
+        let p = Object.keys(all_data).length
+        let chart_data = [['Time', 'Temp', 'Humidity', 'Light', 'Pressure'],];
+        let timestamps = Object.keys(all_data);
+        for (let i = 0; i < p; i++) {
+            try {
+                let current_array = [];
 
 
+                let temp = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][4]["value"][0];
+                let humidity = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][5]["value"][0];
+                let light = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][6]["value"][0];
+                let pres = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][7]["value"][0];
 
-    doAll(all_data);
+                current_array.push(new Date(parseInt(timestamps[i])));
+                current_array.push(parseInt(temp))
+                current_array.push(parseInt(humidity))
+                current_array.push(parseInt(light))
+                current_array.push(parseInt(pres))
+                chart_data.push(current_array)
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        console.log(chart_data)
+
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            let x = [
+                ['Time', 'Sales', 'Expenses'],
+                ['2004', 1000, 400],
+                ['2005', 1170, 460],
+                ['2006', 660, 1120],
+                ['2007', 1030, 540]
+            ]
+            var data1= google.visualization.arrayToDataTable(chart_data);
+
+            var options1 = {
+                title: 'Standard Deviation',
+                curveType: 'function',
+                legend: {position: 'bottom'}
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('std'));
+
+            chart.draw(data1, options1);
+        }
+    }
+
+
+    try{
+        displayAverages();
+    }catch (e){
+        console.error(e)
+    }
+
+    try{
+        displayStd();
+    }catch (e){
+        console.error(e)
+    }
+
 
 
 });
