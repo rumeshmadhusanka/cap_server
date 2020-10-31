@@ -24,23 +24,27 @@ database.ref('weather').once('value', async (snap) => {
 
          let p = Object.keys(all_data).length
         let chart_data = [['Time', 'Temp', 'Humidity','Light','Pressure'],];
+         let timestamps = Object.keys(all_data);
         for (let i = 0; i < p; i++) {
-            let current_array = [];
-            let timestamps = Object.keys(all_data);
+            try {
+                let current_array = [];
 
 
-            let temp = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][0]["value"][0];
-            let humidity = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][1]["value"][0];
-            let light = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][2]["value"][0];
-            let pres = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][3]["value"][0];
 
-            current_array.push(new Date(parseInt(timestamps[i])));
-            current_array.push(parseInt(temp))
-            current_array.push(parseInt(humidity))
-            current_array.push(parseInt(light))
-            current_array.push(parseInt(pres))
-            chart_data.push(current_array)
+                let temp = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][0]["value"][0];
+                let humidity = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][1]["value"][0];
+                let light = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][2]["value"][0];
+                let pres = all_data[timestamps[i]]["alert"]["info"][0]["parameter"][3]["value"][0];
 
+                current_array.push(new Date(parseInt(timestamps[i])));
+                current_array.push(parseInt(temp))
+                current_array.push(parseInt(humidity))
+                current_array.push(parseInt(light))
+                current_array.push(parseInt(pres))
+                chart_data.push(current_array)
+            }catch (e){
+                console.error(e);
+            }
         }
         console.log(chart_data)
 
