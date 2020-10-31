@@ -13,6 +13,11 @@
    <urgency>Past</urgency>
    <severity>Minor</severity>
    <certainty>Observed</certainty>
+<!--     Time that started the data collection-->
+     <onset>2003-06-17T14:57:00-07:00</onset>
+<!--     Time ended the data collection-->
+     <expires>2003-06-17T14:57:00-07:00</expires>
+
 <!--     Data goes here-->
      <parameter>
          <valueName>TEMP</valueName>
@@ -30,6 +35,8 @@
          <valueName>TEMP</valueName>
          <value>{temp value}</value>
      </parameter>
+
+
    <area>
      <areaDesc>UNIVERSITY OF MORATUWA</areaDesc>
    </area>
